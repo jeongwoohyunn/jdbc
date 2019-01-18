@@ -13,9 +13,6 @@ public class AuthorDaoTest {
 	public static void main(String[] args) {
 //		insertTest("스테파니메이어");
 //		insertTest("조정래");
-//		insertTest("천상병");
-//		insertTest("김동인");
-//		insertTest("김난도");
 		getListTest();
 	}
 
@@ -27,7 +24,7 @@ public class AuthorDaoTest {
 		new AuthorDao().insert(vo);
 	}
 	
-	public static void getListTest() {
+	public static void getListTest() {//리스트 가져와서 보여주다.for문에 넣고 돌려서
 		List<AuthorVo> list = new AuthorDao().getList();
 		for(AuthorVo vo : list) {
 			System.out.println(vo);

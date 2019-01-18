@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
-public class UpdateTest {
+public class UpdateTest { 
 
 	public static void main(String[] args) {
 		boolean result = update("Fluffy","정우현","m");
