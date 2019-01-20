@@ -11,27 +11,18 @@ import com.douzone.jdbc.bookshop.vo.SearchVo;
 public class Search {
 
 	public static void main(String[] args) {
-		displayBookInfo();
-
-		Scanner scanner = new Scanner(System.in);
-		System.out.print("검색하고자 하는 사원의 성을 입력하세요.");
-		String no = scanner.next();
-		scanner.close();
-
-		//search();
-		displayBookInfo();
+		getListTest("Parto");
 	}
 
-//	private static void search() {
-//		new SerachDao().select();
-//	}
-
-	private static void displayBookInfo() {
-		System.out.println("*****사원 정보 출력하기******");
-		List<SearchVo> list = new SearchDao().getList();
-		for (SearchVo vo : list) {
-			System.out.println("[" + vo.getFirst_name() +"     "+vo.getHire_date() +"]");
-
+	public static void getListTest(String name) {
+		SearchVo vo = new SearchVo();
+		vo.setFirst_name(name);
+		vo.setLast_name(name);
+		
+		List<SearchVo> list = new SearchDao().getList(vo);
+		for (SearchVo sv : list) {
+			System.out.println("이름 : "+sv.getFirst_name()+" "+sv.getLast_name()+"\n 입사일 : "+sv.getHire_date());
+			
 		}
 	}
 

@@ -12,8 +12,7 @@ import com.douzone.jdbc.bookshop.Search;
 import com.douzone.jdbc.bookshop.vo.SearchVo;
 
 public class SearchDao {
-	public List<SearchVo> getList() {
-		Search a = new Search();
+	public List<SearchVo> getList(SearchVo vo) {
 		List<SearchVo> list = new ArrayList<SearchVo>();
 		Connection conn = null;
 		Statement stmt = null;
@@ -23,18 +22,23 @@ public class SearchDao {
 			// 3. Statement 객체를 생성
 			stmt = conn.createStatement();
 			// 4. SQL문 실행
-			String sql = "select first_name , hire_date from employees where first_name = "+"'"++"'";
+			String sql = "select a.first_name" + ",a.last_name"
+					+ ", a.hire_date from employees a where a.first_name = '" + SearchVo.getFirst_name()
+					+ "' or a.last_name = +'" + SearchVo.getLast_name() + "'";
 			rs = stmt.executeQuery(sql);
 			// 5. 결과 가져오기
 			while (rs.next()) {
+				SearchVo sv = new SearchVo();
+
 				String first_name = rs.getString(1);
-				String hire_date = rs.getString(2);
+				String last_name = rs.getString(2);
+				String hire_date = rs.getString(3);
 
-				SearchVo vo = new SearchVo();
-				vo.setFirst_name(first_name);
-				vo.setHire_date(hire_date);
+				sv.setFirst_name(first_name);
+				sv.setLast_name(last_name);
+				sv.setHire_date(hire_date);
 
-				list.add(vo);
+				list.add(sv);
 			}
 
 			System.out.println("연결 성공");
